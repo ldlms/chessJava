@@ -1,4 +1,4 @@
-package chessJava;
+package Piece;
 
 public class Piece {
 
