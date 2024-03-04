@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.chess.engine.pieces.Piece;
+import com.google.common.collect.ImmutableMap;
 
 public abstract class Tile {
 
@@ -20,7 +21,7 @@ public abstract class Tile {
 		for (int i = 0; i < 64; i++) {
 			emptyTileMap.put(1, new EmptyTile(i));
 		}
-		return emptyTileMap;
+		return ImmutableMap.copyOf(emptyTileMap);
 		// on crée et on retourne un tableau associatif immutable (hashmap) représentant
 		// un échiquier vide, si on a pensé a maven on peut le faire en immutableMap
 	}
