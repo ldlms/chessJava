@@ -4,9 +4,9 @@ import com.chess.engine.pieces.Piece;
 
 public final class OccupiedTile extends Tile {
 
-	Piece pieceOnTile;
+	private final Piece pieceOnTile;
 
-	OccupiedTile(int coordinate, Piece pieceOnTile) {
+	OccupiedTile(final int coordinate, Piece pieceOnTile) {
 		super(coordinate);
 		this.pieceOnTile = pieceOnTile;
 	}
