@@ -18,4 +18,7 @@ public abstract class Piece {
 		this.pieceAlliance = pieceAlliance;
 	}
 
+	public Alliance getAlliance() {
+		return this.pieceAlliance;
+	}
 }

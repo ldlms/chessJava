@@ -9,7 +9,7 @@ import com.google.common.collect.ImmutableMap;
 public abstract class Tile {
 
 	protected final int tileCoordinate;
-	private static final Map<Integer, EmptyTile> EMPTY_TILES_CACHE = createAllPossibleEmptyTiles(); // le private va
+	public static final Map<Integer, EmptyTile> EMPTY_TILES_CACHE = createAllPossibleEmptyTiles(); // le private va
 																									// surement
 	// poser problème
 
