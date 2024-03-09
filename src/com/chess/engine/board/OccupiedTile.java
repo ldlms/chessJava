@@ -6,7 +6,7 @@ public final class OccupiedTile extends Tile {
 
 	private final Piece pieceOnTile;
 
-	OccupiedTile(final int coordinate, Piece pieceOnTile) {
+	OccupiedTile(final int coordinate, final Piece pieceOnTile) {
 		super(coordinate);
 		this.pieceOnTile = pieceOnTile;
 	}

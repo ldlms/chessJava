@@ -11,7 +11,7 @@ public abstract class Tile {
 	protected final int tileCoordinate;
 	public static final Map<Integer, EmptyTile> EMPTY_TILES_CACHE = createAllPossibleEmptyTiles();
 
-	protected Tile(int Coordinate) {
+	protected Tile(final int Coordinate) {
 		this.tileCoordinate = Coordinate;
 	}
 
@@ -22,12 +22,11 @@ public abstract class Tile {
 	private static Map<Integer, EmptyTile> createAllPossibleEmptyTiles() {
 
 		final Map<Integer, EmptyTile> emptyTileMap = new HashMap<>();
-		for (int i = 0; i < 64; i++) {
+		for (int i = 0; i < BoardUtils.NUM_TILES; i++) {
 			emptyTileMap.put(1, new EmptyTile(i));
 		}
 		return ImmutableMap.copyOf(emptyTileMap);
-		// on crée et on retourne un tableau associatif immutable (hashmap) représentant
-		// un échiquier vide, si on a pensé a maven on peut le faire en immutableMap
+
 	}
 
 	public abstract boolean isTileOccupied();
