@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.chess.engine.Alliance;
 import com.chess.engine.board.Board;
+import com.chess.engine.board.BoardUtils;
 import com.chess.engine.board.Move;
 
 public class Pawn extends Piece {
@@ -19,8 +20,12 @@ public class Pawn extends Piece {
 	@Override
 	public Collection<Move> calculateLegalMoves(Board board) {
 		final List<Move> legalMoves = new ArrayList<>();
-		for (final int candidateOffset : CANDIDATE_MOVE_COORDINATE) {
-
+		for (final int currentCandidateOffset : CANDIDATE_MOVE_COORDINATE) {
+			int candidatePiecePosition = (this.piecePosition
+					+ (this.getAlliance().getDirection() * currentCandidateOffset));
+			if (!BoardUtils.isValidTileCoordinate(candidatePiecePosition)) {
+				continue;
+			}
 		}
 		return null;
 	}
