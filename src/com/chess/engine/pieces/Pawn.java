@@ -12,7 +12,7 @@ import com.chess.engine.board.Move;
 
 public class Pawn extends Piece {
 
-	private static final int[] CANDIDATE_MOVE_COORDINATE = { 8, 16 };
+	private static final int[] CANDIDATE_MOVE_COORDINATE = { 7, 8, 9, 16 };
 
 	Pawn(final int pieceCoordinate, final Alliance pieceAlliance) {
 		super(pieceCoordinate, pieceAlliance);
@@ -38,6 +38,11 @@ public class Pawn extends Piece {
 						&& !board.getTile(candidatePiecePosition).isTileOccupied()) {
 					legalMoves.add(new MajorMove(board, this, candidatePiecePosition));
 				}
+			} else if (currentCandidateOffset == 7 && BoardUtils.EIGHTH_COLUMN[this.piecePosition]
+					&& this.getAlliance().isWhite()) {
+
+			} else if (currentCandidateOffset == 9) {
+
 			}
 		}
 		return null;
