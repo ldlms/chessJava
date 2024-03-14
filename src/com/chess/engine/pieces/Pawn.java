@@ -29,8 +29,15 @@ public class Pawn extends Piece {
 			}
 			if (currentCandidateOffset == 8 && !board.getTile(candidatePiecePosition).isTileOccupied()) {
 				legalMoves.add(new MajorMove(board, this, candidatePiecePosition));
-			} else if (currentCandidateOffset == 16 && this.isFirstMove() && (true) || (true)) {
-
+			} else if (currentCandidateOffset == 16 && this.isFirstMove()
+					&& (BoardUtils.SECOND_ROW[this.piecePosition] && this.getAlliance().isBlack()
+							|| (BoardUtils.SEVENTH_ROW[this.piecePosition] && this.getAlliance().isWhite()))) {
+				final int behindCandidateDestinationCoordinate = this.piecePosition
+						+ (8 * this.getAlliance().getDirection());
+				if (!board.getTile(behindCandidateDestinationCoordinate).isTileOccupied()
+						&& !board.getTile(candidatePiecePosition).isTileOccupied()) {
+					legalMoves.add(new MajorMove(board, this, candidatePiecePosition));
+				}
 			}
 		}
 		return null;

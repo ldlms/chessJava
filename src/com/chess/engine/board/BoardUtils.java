@@ -10,8 +10,8 @@ public class BoardUtils {
 	public static final boolean[] SECOND_COLUMN = initColumn(1);
 	public static final boolean[] SEVENTH_COLUMN = initColumn(6);
 	public static final boolean[] EIGHTH_COLUMN = initColumn(7);
-	public static final boolean[] SECOND_ROW = initRow(9);
-	public static final boolean[] SEVENTH_ROW = initRow(56);
+	public static final boolean[] SECOND_ROW = null;
+	public static final boolean[] SEVENTH_ROW = null;
 
 	static final int NUM_TILES = 64;
 	public static final int NUM_TILES_PER_ROW = 8;
@@ -23,15 +23,6 @@ public class BoardUtils {
 			columnNumber += NUM_TILES_PER_ROW;
 		} while (columnNumber < NUM_TILES);
 		return column;
-	}
-
-	private static boolean[] initRow(int rowNumber) {
-		final boolean[] row = new boolean[NUM_TILES];
-		do {
-			row[rowNumber] = true;
-			rowNumber += 1;
-		} while (rowNumber < 17);
-		return row;
 	}
 
 	public static boolean isValidTileCoordinate(final int coordinate) {
