@@ -5,10 +5,12 @@ import java.util.Collection;
 import java.util.List;
 
 import com.chess.engine.Alliance;
+import com.chess.engine.board.AttackMove;
 import com.chess.engine.board.Board;
 import com.chess.engine.board.BoardUtils;
 import com.chess.engine.board.MajorMove;
 import com.chess.engine.board.Move;
+import com.google.common.collect.ImmutableList;
 
 public class Pawn extends Piece {
 
@@ -22,8 +24,8 @@ public class Pawn extends Piece {
 	public Collection<Move> calculateLegalMoves(Board board) {
 		final List<Move> legalMoves = new ArrayList<>();
 		for (final int currentCandidateOffset : CANDIDATE_MOVE_COORDINATE) {
-			final int candidatePiecePosition = (this.piecePosition
-					+ (this.getAlliance().getDirection() * currentCandidateOffset));
+			final int candidatePiecePosition = this.piecePosition
+					+ (this.getAlliance().getDirection() * currentCandidateOffset);
 			if (!BoardUtils.isValidTileCoordinate(candidatePiecePosition)) {
 				continue;
 			}
@@ -38,13 +40,29 @@ public class Pawn extends Piece {
 						&& !board.getTile(candidatePiecePosition).isTileOccupied()) {
 					legalMoves.add(new MajorMove(board, this, candidatePiecePosition));
 				}
-			} else if (currentCandidateOffset == 7 && BoardUtils.EIGHTH_COLUMN[this.piecePosition]
-					&& this.getAlliance().isWhite()) {
+			} else if (currentCandidateOffset == 7
+					&& !(BoardUtils.EIGHTH_COLUMN[this.piecePosition] && this.getAlliance().isWhite()
+							|| (BoardUtils.FIRST_COLUMN[this.piecePosition] && this.getAlliance().isBlack()))) {
+				if (board.getTile(candidatePiecePosition).isTileOccupied()) {
+					final Piece pieceAtDestination = board.getTile(candidatePiecePosition).getPiece();
+					final Alliance pieceAlliance = pieceAtDestination.getAlliance();
+					if (pieceAlliance != this.getAlliance()) {
+						legalMoves.add(new AttackMove(board, this, pieceAtDestination, candidatePiecePosition));
+					}
+				}
 
-			} else if (currentCandidateOffset == 9) {
-
+			} else if (currentCandidateOffset == 9
+					&& !(BoardUtils.FIRST_COLUMN[this.piecePosition] && this.getAlliance().isWhite()
+							|| (BoardUtils.EIGHTH_COLUMN[this.piecePosition] && this.getAlliance().isBlack()))) {
+				if (board.getTile(candidatePiecePosition).isTileOccupied()) {
+					final Piece pieceAtDestination = board.getTile(candidatePiecePosition).getPiece();
+					final Alliance pieceAlliance = pieceAtDestination.getAlliance();
+					if (pieceAlliance != this.getAlliance()) {
+						legalMoves.add(new AttackMove(board, this, pieceAtDestination, candidatePiecePosition));
+					}
+				}
 			}
 		}
-		return null;
+		return ImmutableList.copyOf(legalMoves);
 	}
 }
