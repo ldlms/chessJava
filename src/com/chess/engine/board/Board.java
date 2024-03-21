@@ -27,6 +27,10 @@ public class Board {
 		return ImmutableList.copyOf(tiles);
 	}
 
+	public static Board createStandardBoard() {
+		return null;
+	}
+
 	public static class Builder {
 
 		Map<Integer, Piece> boardConfig;
