@@ -1,5 +1,7 @@
 package com.chess.engine.board;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -16,13 +18,33 @@ import com.google.common.collect.ImmutableList;
 public class Board {
 
 	private final List<Tile> gameBoard;
+	private final Collection<Piece> whitePieces;
+	private final Collection<Piece> blackPieces;
 
 	private Board(Builder builder) {
 		this.gameBoard = createGameBoard(builder);
+		this.whitePieces = calculateActivePieces(this.gameBoard, Alliance.WHITE);
+		this.blackPieces = calculateActivePieces(this.gameBoard, Alliance.BLACK);
+	}
+
+	private Collection<Piece> calculateActivePieces(final List<Tile> gameBoard, final Alliance alliance) {
+
+		final List<Piece> activePieces = new ArrayList<>();
+
+		for (final Tile tile : gameBoard) {
+			if (tile.isTileOccupied()) {
+				final Piece piece = tile.getPiece();
+				if (piece.getAlliance() == alliance) {
+					activePieces.add(piece);
+				}
+			}
+		}
+
+		return ImmutableList.copyOf(activePieces);
 	}
 
 	public Tile getTile(final int coordinate) {
-		return null;
+		return gameBoard.get(coordinate);
 	}
 
 	public static List<Tile> createGameBoard(final Builder builder) {
@@ -69,7 +91,9 @@ public class Board {
 		builder.setPiece(new Pawn(Alliance.WHITE, 61));
 		builder.setPiece(new Pawn(Alliance.WHITE, 62));
 		builder.setPiece(new Pawn(Alliance.WHITE, 63));
-		return null;
+		// set white move
+		builder.setMoveMaker(Alliance.WHITE);
+		return builder.build();
 	}
 
 	public static class Builder {
