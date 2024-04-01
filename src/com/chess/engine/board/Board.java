@@ -45,7 +45,10 @@ public class Board {
 
 	private static String prettyPrint(Tile tile) {
 
-		return null;
+		if (tile.isTileOccupied()) {
+			return tile.getPiece().getAlliance().isBlack() ? tile.toString().toLowerCase() : tile.toString();
+		}
+		return tile.toString();
 	}
 
 	private Collection<Move> calculateLegalMoves(final Collection<Piece> pieces) {
