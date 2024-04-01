@@ -4,7 +4,7 @@ import com.chess.engine.pieces.Piece;
 
 public final class EmptyTile extends Tile {
 
-	EmptyTile(final int coordinate) {
+	public EmptyTile(final int coordinate) {
 		super(coordinate);
 	}
 
