@@ -31,4 +31,19 @@ public abstract class Piece {
 	public boolean isFirstMove() {
 		return this.isFirstMove;
 	}
+
+	public enum pieceType {
+		PAWN("P"), KNIGHT("N"), BISHOP("B"), ROOK("R"), QUEEN("Q"), KING("K");
+
+		final String pieceName;
+
+		pieceType(final String pieceName) {
+			this.pieceName = pieceName;
+		}
+
+		@Override
+		public String toString() {
+			return this.pieceName;
+		}
+	}
 }

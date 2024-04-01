@@ -71,6 +71,11 @@ public final class Knight extends Piece {
 				&& (candidateOffset == -15 || candidateOffset == -6 || candidateOffset == 10 || candidateOffset == 17);
 	}
 
+	@Override
+	public String toString() {
+		return pieceType.KNIGHT.toString();
+	}
+
 	/*
 	 * private boolean isValidTileCoordinate(int coordinate) { if
 	 * (Tile.EMPTY_TILES_CACHE.containsKey(coordinate)) { return true; } else {

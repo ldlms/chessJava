@@ -59,4 +59,9 @@ public final class Rook extends Piece {
 	private static boolean eighthColumnException(final int currentPosition, final int candidateOffset) {
 		return BoardUtils.EIGHTH_COLUMN[currentPosition] && candidateOffset == 1;
 	}
+
+	@Override
+	public String toString() {
+		return pieceType.ROOK.toString();
+	}
 }
