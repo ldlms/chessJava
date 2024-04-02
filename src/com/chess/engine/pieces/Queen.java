@@ -18,7 +18,7 @@ public class Queen extends Piece {
 	private static final int[] CANDIDATE_MOVE_VECTOR_COORDINATES = { -9, -8, -7, -1, 1, 7, 8, 9 };
 
 	public Queen(final Alliance pieceAlliance, final int piecePosition) {
-		super(piecePosition, pieceAlliance);
+		super(PieceType.QUEEN, piecePosition, pieceAlliance);
 	}
 
 	@Override
@@ -63,6 +63,6 @@ public class Queen extends Piece {
 
 	@Override
 	public String toString() {
-		return pieceType.QUEEN.toString();
+		return PieceType.QUEEN.toString();
 	}
 }

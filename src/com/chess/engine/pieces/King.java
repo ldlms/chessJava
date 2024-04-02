@@ -18,7 +18,7 @@ public class King extends Piece {
 	private static final int[] CANDIDATE_MOVE_COORDINATE = { -9, -8, -7, -1, 1, 7, 8, 9 };
 
 	public King(final Alliance pieceAlliance, final int piecePosition) {
-		super(piecePosition, pieceAlliance);
+		super(PieceType.KING, piecePosition, pieceAlliance);
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class King extends Piece {
 
 	@Override
 	public String toString() {
-		return pieceType.KING.toString();
+		return PieceType.KING.toString();
 	}
 
 	private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {
