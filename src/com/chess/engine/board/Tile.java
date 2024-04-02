@@ -23,7 +23,7 @@ public abstract class Tile {
 
 		final Map<Integer, EmptyTile> emptyTileMap = new HashMap<>();
 		for (int i = 0; i < BoardUtils.NUM_TILES; i++) {
-			emptyTileMap.put(1, new EmptyTile(i));
+			emptyTileMap.put(i, new EmptyTile(i));
 		}
 		// return emptyTileMap;
 		return ImmutableMap.copyOf(emptyTileMap);
