@@ -14,4 +14,7 @@ public abstract class Move {
 		this.destination = destination;
 	}
 
+	public int getDestinationCoordinate() {
+		return this.destination;
+	}
 }
