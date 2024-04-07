@@ -50,6 +50,14 @@ public abstract class Player {
 
 	public abstract Player getOpponent();
 
+	public Collection<Move> getLegalMoves() {
+		return this.legalMoves;
+	}
+
+	public King getPlayerKing() {
+		return this.playerKing;
+	}
+
 	public boolean isMoveLegal(final Move move) {
 		return this.legalMoves.contains(move);
 
@@ -83,6 +91,16 @@ public abstract class Player {
 	}
 
 	public MoveTransition makeMove(final Move move) {
+		if (!isMoveLegal(move)) {
+			return new MoveTransition(this.board, move, MoveStatus.ILLEGAL_MOVE);
+		}
+		final Board transitionBoard = move.execute();
+		final Collection<Move> kingAttack = Player.calculateAttackOnTile(
+				transitionBoard.currentPlayer().getOpponent().getPlayerKing().getPiecePosition(),
+				transitionBoard.currentPlayer().getLegalMoves());
+		if (!kingAttack.isEmpty()) {
+			return new MoveTransition(this.board, move, MoveStatus.LEAVES_PLAYER_IN_CHECK);
+		}
 		return null;
 	}
 
