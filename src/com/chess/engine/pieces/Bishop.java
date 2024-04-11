@@ -69,6 +69,6 @@ public final class Bishop extends Piece {
 	@Override
 	public Piece movePiece(Move move) {
 		// TODO Auto-generated method stub
-		return null;
+		return new Bishop(move.getMovedPiece().getAlliance(), move.getDestinationCoordinate());
 	}
 }

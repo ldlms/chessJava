@@ -67,6 +67,6 @@ public class King extends Piece {
 	@Override
 	public Piece movePiece(Move move) {
 		// TODO Auto-generated method stub
-		return null;
+		return new King(move.getMovedPiece().getAlliance(), move.getDestinationCoordinate());
 	}
 }
