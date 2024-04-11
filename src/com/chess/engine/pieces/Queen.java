@@ -65,4 +65,10 @@ public class Queen extends Piece {
 	public String toString() {
 		return PieceType.QUEEN.toString();
 	}
+
+	@Override
+	public Piece movePiece(Move move) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

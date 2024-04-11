@@ -76,6 +76,12 @@ public final class Knight extends Piece {
 		return PieceType.KNIGHT.toString();
 	}
 
+	@Override
+	public Piece movePiece(Move move) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	/*
 	 * private boolean isValidTileCoordinate(int coordinate) { if
 	 * (Tile.EMPTY_TILES_CACHE.containsKey(coordinate)) { return true; } else {

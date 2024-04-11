@@ -70,4 +70,10 @@ public class Pawn extends Piece {
 	public String toString() {
 		return PieceType.PAWN.toString();
 	}
+
+	@Override
+	public Piece movePiece(Move move) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

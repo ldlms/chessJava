@@ -64,4 +64,10 @@ public final class Rook extends Piece {
 	public String toString() {
 		return PieceType.ROOK.toString();
 	}
+
+	@Override
+	public Piece movePiece(Move move) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

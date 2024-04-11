@@ -65,4 +65,10 @@ public final class Bishop extends Piece {
 	private static boolean isEighthColumnExclusion(final int currentPosition, final int candidateOffset) {
 		return BoardUtils.EIGHTH_COLUMN[currentPosition] && (candidateOffset == -7 || candidateOffset == 9);
 	}
+
+	@Override
+	public Piece movePiece(Move move) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

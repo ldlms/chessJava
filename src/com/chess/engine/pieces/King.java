@@ -63,4 +63,10 @@ public class King extends Piece {
 		return BoardUtils.EIGHTH_COLUMN[currentPosition]
 				&& (candidateOffset == -7 || candidateOffset == 1 || candidateOffset == 9);
 	}
+
+	@Override
+	public Piece movePiece(Move move) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
