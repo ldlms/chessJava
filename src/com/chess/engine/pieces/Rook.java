@@ -66,7 +66,7 @@ public final class Rook extends Piece {
 	}
 
 	@Override
-	public Piece movePiece(Move move) {
+	public Rook movePiece(Move move) {
 		// TODO Auto-generated method stub
 		return new Rook(move.getMovedPiece().getAlliance(), move.getDestinationCoordinate());
 	}

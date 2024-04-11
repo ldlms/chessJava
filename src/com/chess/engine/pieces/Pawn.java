@@ -72,7 +72,7 @@ public class Pawn extends Piece {
 	}
 
 	@Override
-	public Piece movePiece(Move move) {
+	public Pawn movePiece(Move move) {
 		// TODO Auto-generated method stub
 		return new Pawn(move.getMovedPiece().getAlliance(), move.getDestinationCoordinate());
 	}

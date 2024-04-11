@@ -77,7 +77,7 @@ public final class Knight extends Piece {
 	}
 
 	@Override
-	public Piece movePiece(Move move) {
+	public Knight movePiece(Move move) {
 		// TODO Auto-generated method stub
 		return new Knight(move.getMovedPiece().getAlliance(), move.getDestinationCoordinate());
 	}
