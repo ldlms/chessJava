@@ -2,7 +2,7 @@ package com.chess.engine.board;
 
 import com.chess.engine.pieces.Piece;
 
-public final class AttackMove extends Move {
+public class AttackMove extends Move {
 
 	final Piece attackedPiece;
 
@@ -11,8 +11,4 @@ public final class AttackMove extends Move {
 		this.attackedPiece = attackedPiece;
 	}
 
-	@Override
-	public Board execute() {
-		return null;
-	}
 }
