@@ -1,10 +1,13 @@
 package com.chess.engine.board;
 
-import com.chess.engine.pieces.Piece;
-
 public class NullMove extends Move {
 
-	public NullMove(final Board board, final Piece movedPiece, final int destination) {
-		super(board, movedPiece, destination);
+	public NullMove() {
+		super(null, null, -1);
+	}
+
+	@Override
+	public Board execute() {
+		throw new RuntimeException("Cannot execute the null move");
 	}
 }

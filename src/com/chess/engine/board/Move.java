@@ -9,6 +9,8 @@ public abstract class Move {
 	final Piece movedPiece;
 	final int destination;
 
+	public static final Move NULL_MOVE = new NullMove();
+
 	public Move(final Board board, final Piece movedPiece, final int destination) {
 		this.board = board;
 		this.movedPiece = movedPiece;
@@ -21,6 +23,10 @@ public abstract class Move {
 
 	public Piece getMovedPiece() {
 		return this.movedPiece;
+	}
+
+	public int getCurrentCoordinate() {
+		return this.getMovedPiece().getPiecePosition();
 	}
 
 	public Board execute() {
