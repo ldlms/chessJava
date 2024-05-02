@@ -59,8 +59,7 @@ public abstract class Move {
 			return false;
 		}
 		final Move otherMove = (Move) other;
-		return getCurrentCoordinate() == otherMove.getCurrentCoordinate()
-				&& getDestinationCoordinate() == otherMove.getDestinationCoordinate()
+		return getDestinationCoordinate() == otherMove.getDestinationCoordinate()
 				&& getMovedPiece().equals(otherMove.getMovedPiece());
 	}
 
