@@ -11,4 +11,9 @@ public class AttackMove extends Move {
 		this.attackedPiece = attackedPiece;
 	}
 
+	@Override
+	public boolean isAttack() {
+		return true;
+	}
+
 }
