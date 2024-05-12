@@ -4,7 +4,7 @@ import com.chess.engine.board.Board.Builder;
 import com.chess.engine.pieces.Piece;
 import com.chess.engine.pieces.Rook;
 
-abstract class CastleMove extends Move {
+public abstract class CastleMove extends Move {
 	protected final Rook castleRook;
 	protected final int castleRookStart;
 	protected final int castleRookDestination;

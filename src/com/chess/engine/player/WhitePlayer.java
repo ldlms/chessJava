@@ -6,9 +6,12 @@ import java.util.List;
 
 import com.chess.engine.Alliance;
 import com.chess.engine.board.Board;
+import com.chess.engine.board.CastleMove.KingSideCastleMove;
+import com.chess.engine.board.CastleMove.QueenSideCastleMove;
 import com.chess.engine.board.Move;
 import com.chess.engine.board.Tile;
 import com.chess.engine.pieces.Piece;
+import com.chess.engine.pieces.Rook;
 import com.google.common.collect.ImmutableList;
 
 public class WhitePlayer extends Player {
@@ -34,7 +37,8 @@ public class WhitePlayer extends Player {
 	}
 
 	@Override
-	protected Collection<Move> calculateKingCastles(Collection<Move> playerLegals, Collection<Move> opponentsLegals) {
+	protected Collection<Move> calculateKingCastles(final Collection<Move> playerLegals,
+			final Collection<Move> opponentsLegals) {
 
 		final List<Move> kingCastles = new ArrayList<>();
 		if (this.playerKing.isFirstMove() && !this.isInCheck()) {
@@ -45,8 +49,8 @@ public class WhitePlayer extends Player {
 					if (Player.calculateAttackOnTile(61, opponentsLegals).isEmpty()
 							&& Player.calculateAttackOnTile(62, opponentsLegals).isEmpty()
 							&& rookTile.getPiece().getPieceType().isRook()) {
-						// todo castelmove
-						kingCastles.add(null);
+						kingCastles.add(new KingSideCastleMove(this.board, this.playerKing, 62,
+								(Rook) rookTile.getPiece(), rookTile.getTileCoordinate(), 61));
 					}
 				}
 			}
@@ -55,7 +59,9 @@ public class WhitePlayer extends Player {
 				final Tile rookTile = this.board.getTile(56);
 				if (rookTile.isTileOccupied() && rookTile.getPiece().isFirstMove()) {
 					// tode
-					kingCastles.add(null);
+					kingCastles.add(new QueenSideCastleMove(this.board, this.playerKing, 58, (Rook) rookTile.getPiece(),
+							rookTile.getTileCoordinate(), 59));
+					;
 				}
 
 			}
