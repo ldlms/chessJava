@@ -11,5 +11,6 @@ public class Jchess {
 		System.out.println(board);
 
 		Table table = new Table();
+
 	}
 }
