@@ -87,7 +87,7 @@ public class Table {
 		}
 
 		private void assignTileColor() {
-			// TODO Auto-generated method stub
+			if(BoardUtils.FIRST_COLUMN)
 
 		}
 	}
