@@ -26,18 +26,20 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 import com.chess.engine.board.Board;
 import com.chess.engine.board.BoardUtils;
 import com.chess.engine.board.Move;
 import com.chess.engine.board.Tile;
 import com.chess.engine.pieces.Piece;
+import com.chess.engine.player.MoveTransition;
 
 public class Table {
 
 	private final JFrame gameFrame;
 	private final BoardPanel boardPanel;
-	private final Board chessBoard;
+	private Board chessBoard;
 	private Tile sourceTile;
 	private Tile destinationTile;
 	private Piece humanMovedPiece;
@@ -104,6 +106,16 @@ public class Table {
 			setPreferredSize(BOARD_PANEL_DIMENSION);
 			validate();
 		}
+
+		public void drawBoard(final Board board) {
+			removeAll();
+			for (final TilePanel tilePanel : boardTiles) {
+				tilePanel.drawTiles(board);
+				add(tilePanel);
+			}
+			validate();
+			repaint();
+		}
 	}
 
 	private class TilePanel extends JPanel {
@@ -138,7 +150,25 @@ public class Table {
 							destinationTile = chessBoard.getTile(tileId);
 							final Move move = Move.MoveFactory.createMove(chessBoard, sourceTile.getTileCoordinate(),
 									destinationTile.getTileCoordinate());
+							final MoveTransition transition = chessBoard.currentPlayer().makeMove(move);
+							if (transition.getMoveStatus().isDone()) {
+								chessBoard = transition.getTransitionBoard();
+								// add the move to the moveLog
+							}
+
+							sourceTile = null;
+							destinationTile = null;
+							humanMovedPiece = null;
 						}
+						SwingUtilities.invokeLater(new Runnable() {
+
+							@Override
+							public void run() {
+								boardPanel.drawBoard(chessBoard);
+
+							}
+
+						});
 
 					}
 				}
@@ -169,6 +199,13 @@ public class Table {
 
 			});
 			validate();
+		}
+
+		public void drawTiles(final Board board) {
+			assignTileColor();
+			assignPieceIcon(board);
+			validate();
+			repaint();
 		}
 
 		private void assignPieceIcon(final Board board) {
