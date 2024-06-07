@@ -136,7 +136,8 @@ public class Table {
 						} else {
 							// second clic
 							destinationTile = chessBoard.getTile(tileId);
-							final Move move = null;
+							final Move move = Move.MoveFactory.createMove(chessBoard, sourceTile.getTileCoordinate(),
+									destinationTile.getTileCoordinate());
 						}
 
 					}
