@@ -96,6 +96,7 @@ public abstract class Player {
 	}
 
 	public MoveTransition makeMove(final Move move) {
+		System.out.println(isMoveLegal(move));
 		if (!isMoveLegal(move)) {
 			return new MoveTransition(this.board, move, MoveStatus.ILLEGAL_MOVE);
 		}
@@ -107,7 +108,6 @@ public abstract class Player {
 			return new MoveTransition(this.board, move, MoveStatus.LEAVES_PLAYER_IN_CHECK);
 		}
 		MoveTransition movetransi = new MoveTransition(this.board, move, MoveStatus.DONE);
-		System.out.println(movetransi.getMove() + " " + movetransi.getMoveStatus());
 		return movetransi;
 	}
 

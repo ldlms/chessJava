@@ -38,7 +38,7 @@ import com.chess.engine.player.MoveTransition;
 public class Table {
 
 	private final JFrame gameFrame;
-	private final BoardPanel boardPanel;
+	private BoardPanel boardPanel;
 	private Board chessBoard;
 	private Tile sourceTile;
 	private Tile destinationTile;
@@ -177,8 +177,10 @@ public class Table {
 
 							@Override
 							public void run() {
-								// System.out.println("le runnable");
+								System.out.println(chessBoard);
 								boardPanel.drawBoard(chessBoard);
+
+								// les positions ne sont pas attribuées correctement
 
 							}
 
