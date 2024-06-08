@@ -93,6 +93,10 @@ public class Table {
 
 	private class BoardPanel extends JPanel {
 
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		final List<TilePanel> boardTiles;
 
 		BoardPanel() {
@@ -108,6 +112,7 @@ public class Table {
 		}
 
 		public void drawBoard(final Board board) {
+			System.out.println("allo !");
 			removeAll();
 			for (final TilePanel tilePanel : boardTiles) {
 				tilePanel.drawTiles(board);
@@ -120,6 +125,10 @@ public class Table {
 
 	private class TilePanel extends JPanel {
 
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		private final int tileId;
 
 		TilePanel(final BoardPanel boardPanel, final int tileId) {
@@ -145,13 +154,16 @@ public class Table {
 							if (humanMovedPiece == null) {
 								sourceTile = null;
 							}
+							// System.out.println(humanMovedPiece + "selectionné");
 						} else {
 							// second clic
 							destinationTile = chessBoard.getTile(tileId);
+							// System.out.println("go en" + destinationTile.getTileCoordinate());
 							final Move move = Move.MoveFactory.createMove(chessBoard, sourceTile.getTileCoordinate(),
 									destinationTile.getTileCoordinate());
 							final MoveTransition transition = chessBoard.currentPlayer().makeMove(move);
 							if (transition.getMoveStatus().isDone()) {
+								// System.out.println("move done");
 								chessBoard = transition.getTransitionBoard();
 								// add the move to the moveLog
 							}
@@ -164,6 +176,7 @@ public class Table {
 
 							@Override
 							public void run() {
+								// System.out.println("le runnable");
 								boardPanel.drawBoard(chessBoard);
 
 							}

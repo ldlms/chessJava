@@ -78,7 +78,7 @@ public abstract class Move {
 		return builder.build();
 	}
 
-	public class MoveFactory {
+	public static class MoveFactory {
 
 		private MoveFactory() {
 			throw new RuntimeException("not instanciable");
@@ -88,10 +88,11 @@ public abstract class Move {
 			for (final Move move : board.getAllLegalMoves()) {
 				if (move.getCurrentCoordinate() == currentCoordinate
 						&& move.getDestinationCoordinate() == destinationCoordinate) {
+					// System.out.println("move crée" + move);
 					return move;
 				}
 			}
-			return Move.NULL_MOVE;
+			return NULL_MOVE;
 		}
 	}
 }
