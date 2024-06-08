@@ -112,7 +112,7 @@ public class Table {
 		}
 
 		public void drawBoard(final Board board) {
-			System.out.println("allo !");
+			// System.out.println("allo !");
 			removeAll();
 			for (final TilePanel tilePanel : boardTiles) {
 				tilePanel.drawTiles(board);
@@ -162,6 +162,7 @@ public class Table {
 							final Move move = Move.MoveFactory.createMove(chessBoard, sourceTile.getTileCoordinate(),
 									destinationTile.getTileCoordinate());
 							final MoveTransition transition = chessBoard.currentPlayer().makeMove(move);
+							// le problème semble se situer ici ya un truc étrange
 							if (transition.getMoveStatus().isDone()) {
 								// System.out.println("move done");
 								chessBoard = transition.getTransitionBoard();

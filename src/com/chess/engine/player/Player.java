@@ -106,7 +106,9 @@ public abstract class Player {
 		if (!kingAttack.isEmpty()) {
 			return new MoveTransition(this.board, move, MoveStatus.LEAVES_PLAYER_IN_CHECK);
 		}
-		return new MoveTransition(this.board, move, MoveStatus.DONE);
+		MoveTransition movetransi = new MoveTransition(this.board, move, MoveStatus.DONE);
+		System.out.println(movetransi.getMove() + " " + movetransi.getMoveStatus());
+		return movetransi;
 	}
 
 }
