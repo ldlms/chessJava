@@ -96,8 +96,8 @@ public abstract class Player {
 	}
 
 	public MoveTransition makeMove(final Move move) {
-		System.out.println(isMoveLegal(move));
 		if (!isMoveLegal(move)) {
+			System.out.println("le move est illegal");
 			return new MoveTransition(this.board, move, MoveStatus.ILLEGAL_MOVE);
 		}
 		final Board transitionBoard = move.execute();
@@ -107,7 +107,8 @@ public abstract class Player {
 		if (!kingAttack.isEmpty()) {
 			return new MoveTransition(this.board, move, MoveStatus.LEAVES_PLAYER_IN_CHECK);
 		}
-		MoveTransition movetransi = new MoveTransition(this.board, move, MoveStatus.DONE);
+		MoveTransition movetransi = new MoveTransition(transitionBoard, move, MoveStatus.DONE);
+		// fallait il mettre le transitionBoard ?
 		return movetransi;
 	}
 

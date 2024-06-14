@@ -166,6 +166,7 @@ public class Table {
 							if (transition.getMoveStatus().isDone()) {
 								// System.out.println("move done");
 								chessBoard = transition.getTransitionBoard();
+								System.out.println(chessBoard);
 								// add the move to the moveLog
 							}
 
@@ -177,7 +178,6 @@ public class Table {
 
 							@Override
 							public void run() {
-								System.out.println(chessBoard);
 								boardPanel.drawBoard(chessBoard);
 
 								// les positions ne sont pas attribuées correctement
