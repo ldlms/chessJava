@@ -22,6 +22,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -47,6 +48,7 @@ public class Table {
 	private Tile destinationTile;
 	private Piece humanMovedPiece;
 	private BoardDirection boardDirection;
+	private boolean hightlightLegalMoves;
 
 	private final static Dimension OUTER_FRAME_DIMENSION = new Dimension(600, 600);
 	private final static Dimension BOARD_PANEL_DIMENSION = new Dimension(400, 350);
@@ -66,6 +68,7 @@ public class Table {
 		this.boardDirection = BoardDirection.NORMAL;
 		this.gameFrame.add(this.boardPanel, BorderLayout.CENTER);
 		this.gameFrame.setVisible(true);
+		hightlightLegalMoves = false;
 	}
 
 	private JMenuBar createTableMenuBar() {
@@ -109,6 +112,15 @@ public class Table {
 			}
 		});
 		preferencesMenu.add(flipBoardMenuItem);
+		preferencesMenu.addSeparator();
+		final JCheckBoxMenuItem legalMoveHighlighterCheckbox = new JCheckBoxMenuItem("legal Moves", false);
+		legalMoveHighlighterCheckbox.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(final ActionEvent e) {
+				hightlightLegalMoves = legalMoveHighlighterCheckbox.isSelected();
+			}
+		});
+		preferencesMenu.add(legalMoveHighlighterCheckbox);
 		return preferencesMenu;
 	}
 
@@ -303,7 +315,7 @@ public class Table {
 		}
 
 		private void highlightLegals(final Board board) {
-			if (true) {
+			if (hightlightLegalMoves) {
 				for (final Move move : pieceLegalMoves(board)) {
 					if (move.getDestinationCoordinate() == this.tileId) {
 						try {
