@@ -217,11 +217,9 @@ public class Table {
 							if (humanMovedPiece == null) {
 								sourceTile = null;
 							}
-							// System.out.println(humanMovedPiece + "selectionné");
 						} else {
 							// second clic
 							destinationTile = chessBoard.getTile(tileId);
-							// System.out.println("go en" + destinationTile.getTileCoordinate());
 							final Move move = Move.MoveFactory.createMove(chessBoard, sourceTile.getTileCoordinate(),
 									destinationTile.getTileCoordinate());
 							final MoveTransition transition = chessBoard.currentPlayer().makeMove(move);
@@ -242,8 +240,6 @@ public class Table {
 							@Override
 							public void run() {
 								boardPanel.drawBoard(chessBoard);
-
-								// les positions ne sont pas attribuées correctement
 
 							}
 
