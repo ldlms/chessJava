@@ -5,11 +5,12 @@ import java.util.Collection;
 import java.util.List;
 
 import com.chess.engine.Alliance;
-import com.chess.engine.board.AttackMove;
 import com.chess.engine.board.Board;
 import com.chess.engine.board.BoardUtils;
 import com.chess.engine.board.MajorMove;
 import com.chess.engine.board.Move;
+import com.chess.engine.board.PawnAttackMove;
+import com.chess.engine.board.PawnJump;
 import com.google.common.collect.ImmutableList;
 
 public class Pawn extends Piece {
@@ -42,7 +43,7 @@ public class Pawn extends Piece {
 						+ (8 * this.getAlliance().getDirection());
 				if (!board.getTile(behindCandidateDestinationCoordinate).isTileOccupied()
 						&& !board.getTile(candidatePiecePosition).isTileOccupied()) {
-					legalMoves.add(new MajorMove(board, this, candidatePiecePosition));
+					legalMoves.add(new PawnJump(board, this, candidatePiecePosition));
 				}
 			} else if (currentCandidateOffset == 7
 					&& !(BoardUtils.EIGHTH_COLUMN[this.piecePosition] && this.getAlliance().isWhite()
@@ -51,7 +52,7 @@ public class Pawn extends Piece {
 					final Piece pieceAtDestination = board.getTile(candidatePiecePosition).getPiece();
 					final Alliance pieceAlliance = pieceAtDestination.getAlliance();
 					if (pieceAlliance != this.getAlliance()) {
-						legalMoves.add(new AttackMove(board, this, pieceAtDestination, candidatePiecePosition));
+						legalMoves.add(new PawnAttackMove(board, this, pieceAtDestination, candidatePiecePosition));
 					}
 				}
 
@@ -62,7 +63,7 @@ public class Pawn extends Piece {
 					final Piece pieceAtDestination = board.getTile(candidatePiecePosition).getPiece();
 					final Alliance pieceAlliance = pieceAtDestination.getAlliance();
 					if (pieceAlliance != this.getAlliance()) {
-						legalMoves.add(new AttackMove(board, this, pieceAtDestination, candidatePiecePosition));
+						legalMoves.add(new PawnAttackMove(board, this, pieceAtDestination, candidatePiecePosition));
 					}
 				}
 			}

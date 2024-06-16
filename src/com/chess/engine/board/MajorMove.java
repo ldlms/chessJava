@@ -12,4 +12,9 @@ public final class MajorMove extends Move {
 	public boolean isAttack() {
 		return false;
 	}
+
+	@Override
+	public boolean equals(final Object other) {
+		return this == other || other instanceof MajorMove && super.equals(other);
+	}
 }

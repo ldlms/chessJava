@@ -5,9 +5,10 @@ import com.chess.engine.pieces.Piece;
 
 public abstract class Move {
 
-	final Board board;
-	final Piece movedPiece;
-	final int destination;
+	protected final Board board;
+	protected final Piece movedPiece;
+	protected final int destination;
+	protected final boolean isFirstMove;
 
 	public static final Move NULL_MOVE = new NullMove();
 
@@ -15,6 +16,14 @@ public abstract class Move {
 		this.board = board;
 		this.movedPiece = movedPiece;
 		this.destination = destination;
+		this.isFirstMove = movedPiece.isFirstMove();
+	}
+
+	public Move(final Board board, final int destination) {
+		this.board = board;
+		this.destination = destination;
+		this.movedPiece = null;
+		this.isFirstMove = false;
 	}
 
 	public int getDestinationCoordinate() {
@@ -47,6 +56,7 @@ public abstract class Move {
 		int result = 1;
 		result = prime + result + this.destination;
 		result = prime + result + this.movedPiece.hashCode();
+		result = prime * result + this.movedPiece.getPiecePosition();
 		return result;
 	}
 
@@ -59,7 +69,8 @@ public abstract class Move {
 			return false;
 		}
 		final Move otherMove = (Move) other;
-		return getDestinationCoordinate() == otherMove.getDestinationCoordinate()
+		return getCurrentCoordinate() == otherMove.getCurrentCoordinate()
+				&& getDestinationCoordinate() == otherMove.getDestinationCoordinate()
 				&& getMovedPiece().equals(otherMove.getMovedPiece());
 	}
 
