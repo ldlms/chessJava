@@ -16,11 +16,11 @@ public abstract class Piece {
 
 	public abstract Collection<Move> calculateLegalMoves(final Board board);
 
-	Piece(final PieceType pieceType, final int piecePosition, final Alliance pieceAlliance) {
+	Piece(final PieceType pieceType, final int piecePosition, final Alliance pieceAlliance, final boolean isFirstMove) {
 		this.piecePosition = piecePosition;
 		this.pieceAlliance = pieceAlliance;
 		this.pieceType = pieceType;
-		this.isFirstMove = true;
+		this.isFirstMove = isFirstMove;
 		this.cachedHashCode = computedHashCode();
 	}
 
