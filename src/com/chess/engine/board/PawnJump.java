@@ -14,7 +14,7 @@ public class PawnJump extends Move {
 	public Board execute() {
 		final Builder builder = new Builder();
 		for (final Piece piece : this.board.currentPlayer().getActivePiece()) {
-			if (this.movedPiece.equals(piece)) {
+			if (!this.movedPiece.equals(piece)) {
 				builder.setPiece(piece);
 			}
 		}
