@@ -2,6 +2,7 @@ package com.chess.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JPanel;
@@ -39,6 +40,24 @@ public class GameHistoryPanel extends JPanel {
 		private final List<Row> values;
 		private static final String[] NAMES = { "white", "black" };
 
+		DataModel() {
+			this.values = new ArrayList<>();
+		}
+
+		public void clear() {
+			this.values.clear();
+			setRowCount(0);
+		}
+
+		@Override
+		public int getRowCount() {
+			if (this.values == null) {
+				return 0;
+			}
+			return this.values.size();
+
+		}
+
 	}
 
 	private static class Row {
@@ -54,6 +73,14 @@ public class GameHistoryPanel extends JPanel {
 
 		public String getBlackMove() {
 			return this.blackMove;
+		}
+
+		public void setWhiteMove(final String whiteMove) {
+			this.whiteMove = whiteMove;
+		}
+
+		public void setBlackMove(final String blackMove) {
+			this.blackMove = blackMove;
 		}
 	}
 }
