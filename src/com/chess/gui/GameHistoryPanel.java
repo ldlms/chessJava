@@ -58,6 +58,40 @@ public class GameHistoryPanel extends JPanel {
 
 		}
 
+		@Override
+		public int getColumnCount() {
+			return NAMES.length;
+
+		}
+
+		@Override
+		public Object getValueAt(final int row, final int column) {
+			final Row currentRow = this.values.get(row);
+			if (column == 0) {
+				return currentRow.getWhiteMove();
+			} else if (column == 1) {
+				return currentRow.getBlackMove();
+			}
+			return null;
+		}
+
+		@Override
+		public void setValueAt(final Object aValue, final int row, final int column) {
+			final Row currentRow;
+			if (this.values.size() <= row) {
+				currentRow = new Row();
+				this.values.add(currentRow);
+			} else {
+				currentRow = this.values.get(row);
+			}
+			if (column == 0) {
+				currentRow.setWhiteMove((String) aValue);
+			} else if (column == 1) {
+				currentRow.setBlackMove((String) aValue);
+				fireTableCellUpdated(row, column);
+			}
+		}
+
 	}
 
 	private static class Row {
