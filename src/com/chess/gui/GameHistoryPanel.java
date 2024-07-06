@@ -51,9 +51,12 @@ public class GameHistoryPanel extends JPanel {
 		if (moveHistory.getMoves().size() > 0) {
 			final Move lastMove = moveHistory.getMoves().get(moveHistory.size() - 1);
 			final String moveText = lastMove.toString();
-
 			if (lastMove.getMovedPiece().getAlliance().isWhite()) {
+				this.model.setValueAt(moveText + calculateCheckAndCheckMateHash(board), currentRow, 0);
+				System.out.println(moveText);
+			} else if (lastMove.getMovedPiece().getAlliance().isBlack()) {
 				this.model.setValueAt(moveText + calculateCheckAndCheckMateHash(board), currentRow - 1, 1);
+				System.out.println(moveText);
 			}
 		}
 
@@ -120,6 +123,7 @@ public class GameHistoryPanel extends JPanel {
 			}
 			if (column == 0) {
 				currentRow.setWhiteMove((String) aValue);
+				fireTableCellUpdated(row, row);
 			} else if (column == 1) {
 				currentRow.setBlackMove((String) aValue);
 				fireTableCellUpdated(row, column);

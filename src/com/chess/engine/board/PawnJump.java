@@ -28,4 +28,9 @@ public class PawnJump extends Move {
 		return builder.build();
 
 	}
+
+	@Override
+	public String toString() {
+		return BoardUtils.getPositionAtCoordinate(getDestinationCoordinate());
+	}
 }

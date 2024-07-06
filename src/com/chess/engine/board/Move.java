@@ -99,8 +99,6 @@ public abstract class Move {
 			for (final Move move : board.getAllLegalMoves()) {
 				if (move.getCurrentCoordinate() == currentCoordinate
 						&& move.getDestinationCoordinate() == destinationCoordinate) {
-					System.out.println("move crée " + move.movedPiece + " de" + move.getCurrentCoordinate() + " a "
-							+ move.getDestinationCoordinate());
 					return move;
 				}
 			}

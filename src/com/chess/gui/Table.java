@@ -72,7 +72,7 @@ public class Table {
 		this.boardPanel = new BoardPanel();
 		this.moveLog = new MoveLog();
 		this.boardDirection = BoardDirection.NORMAL;
-		hightlightLegalMoves = false;
+		hightlightLegalMoves = true;
 		this.gameFrame.add(gameHistoryPanel, BorderLayout.EAST);
 		this.gameFrame.add(this.boardPanel, BorderLayout.CENTER);
 		this.gameFrame.add(takenPiecesPanel, BorderLayout.WEST);
