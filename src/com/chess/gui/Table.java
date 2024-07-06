@@ -46,6 +46,7 @@ public class Table {
 	private final TakenPiecesPanel takenPiecesPanel;
 	private BoardPanel boardPanel;
 	private Board chessBoard;
+	private final MoveLog moveLog;
 	private Tile sourceTile;
 	private Tile destinationTile;
 	private Piece humanMovedPiece;
@@ -69,6 +70,7 @@ public class Table {
 		this.gameHistoryPanel = new GameHistoryPanel();
 		this.takenPiecesPanel = new TakenPiecesPanel();
 		this.boardPanel = new BoardPanel();
+		this.moveLog = new MoveLog();
 		this.boardDirection = BoardDirection.NORMAL;
 		hightlightLegalMoves = false;
 		this.gameFrame.add(gameHistoryPanel, BorderLayout.EAST);
@@ -266,6 +268,7 @@ public class Table {
 							if (transition.getMoveStatus().isDone()) {
 								// System.out.println("move done");
 								chessBoard = transition.getTransitionBoard();
+								moveLog.addMoves(move);
 								// System.out.println(chessBoard);
 								// add the move to the moveLog
 							}
@@ -278,6 +281,8 @@ public class Table {
 
 							@Override
 							public void run() {
+								gameHistoryPanel.redo(chessBoard, moveLog);
+								takenPiecesPanel.redo(moveLog);
 								boardPanel.drawBoard(chessBoard);
 
 							}
