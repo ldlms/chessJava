@@ -42,6 +42,8 @@ import com.google.common.collect.Lists;
 public class Table {
 
 	private final JFrame gameFrame;
+	private final GameHistoryPanel gameHistoryPanel;
+	private final TakenPiecesPanel takenPiecesPanel;
 	private BoardPanel boardPanel;
 	private Board chessBoard;
 	private Tile sourceTile;
@@ -64,11 +66,15 @@ public class Table {
 		this.gameFrame.setJMenuBar(tableMenuBar);
 		this.gameFrame.setSize(OUTER_FRAME_DIMENSION);
 		this.chessBoard = Board.createStandardBoard();
+		this.gameHistoryPanel = new GameHistoryPanel();
+		this.takenPiecesPanel = new TakenPiecesPanel();
 		this.boardPanel = new BoardPanel();
 		this.boardDirection = BoardDirection.NORMAL;
-		this.gameFrame.add(this.boardPanel, BorderLayout.CENTER);
-		this.gameFrame.setVisible(true);
 		hightlightLegalMoves = false;
+		this.gameFrame.add(gameHistoryPanel, BorderLayout.EAST);
+		this.gameFrame.add(this.boardPanel, BorderLayout.CENTER);
+		this.gameFrame.add(takenPiecesPanel, BorderLayout.WEST);
+		this.gameFrame.setVisible(true);
 	}
 
 	private JMenuBar createTableMenuBar() {
