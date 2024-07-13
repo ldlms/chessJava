@@ -3,7 +3,7 @@ package com.chess.engine.board;
 public class NullMove extends Move {
 
 	public NullMove() {
-		super(null, -1);
+		super(null, 65);
 	}
 
 	@Override
