@@ -39,6 +39,14 @@ public abstract class CastleMove extends Move {
 		return builder.build();
 	}
 
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + this.castleRook.hashCode();
+		result = prime * result + this.castleRookDestination;
+		return result;
+	}
+
 	public Rook getCastleRook() {
 		return this.castleRook;
 	}
