@@ -47,6 +47,17 @@ public abstract class CastleMove extends Move {
 		return result;
 	}
 
+	public boolean equals(Object other) {
+		if (this == other) {
+			return true;
+		}
+		if (!(other instanceof CastleMove)) {
+			return false;
+		}
+		final CastleMove otherCastleMove = (CastleMove) other;
+		return super.equals(otherCastleMove) && this.castleRook.equals(otherCastleMove.getCastleRook());
+	}
+
 	public Rook getCastleRook() {
 		return this.castleRook;
 	}
@@ -61,6 +72,12 @@ public abstract class CastleMove extends Move {
 		public String toString() {
 			return "0-0";
 		}
+
+		@Override
+		public boolean equals(Object other) {
+			return this == other || other instanceof KingSideCastleMove && super.equals(other);
+
+		}
 	}
 
 	public static final class QueenSideCastleMove extends CastleMove {
@@ -72,6 +89,12 @@ public abstract class CastleMove extends Move {
 		@Override
 		public String toString() {
 			return "0-0-0";
+		}
+
+		@Override
+		public boolean equals(Object other) {
+			return this == other || other instanceof QueenSideCastleMove && super.equals(other);
+
 		}
 	}
 
