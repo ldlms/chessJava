@@ -15,7 +15,7 @@ import com.google.common.collect.ImmutableList;
 
 public final class Knight extends Piece {
 
-	private final static int[] CANDIDATE_MOVE_COORDINATES = { -17, -15, -10, -6, 6, 10, 17 };
+	private final static int[] CANDIDATE_MOVE_COORDINATES = { -17, -15, -10, -6, 6, 10, 15, 17 };
 
 	public Knight(final Alliance pieceAlliance, final int piecePosition) {
 		super(PieceType.KNIGHT, piecePosition, pieceAlliance, true);
