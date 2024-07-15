@@ -32,10 +32,12 @@ public final class Bishop extends Piece {
 		for (final int candidateCoordinateOffset : CANDIDATE_MOVE_VECTOR_COORDINATES) {
 			int candidateDestinationCoordinate = this.piecePosition;
 			while (BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)) {
-				if (!isFirstColumnExclusion(candidateDestinationCoordinate, candidateCoordinateOffset)
-						|| !isEighthColumnExclusion(candidateDestinationCoordinate, candidateCoordinateOffset)) {
+				if (isFirstColumnExclusion(candidateDestinationCoordinate, candidateCoordinateOffset)
+						|| isEighthColumnExclusion(candidateDestinationCoordinate, candidateCoordinateOffset)) {
 					break;
 				}
+				System.out.println("allo");
+				// problème dans la boucle ci-dessus
 				candidateDestinationCoordinate += candidateCoordinateOffset;
 				if (BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)) {
 					final Tile DestinationTile = board.getTile(candidateDestinationCoordinate);
@@ -54,6 +56,7 @@ public final class Bishop extends Piece {
 			}
 
 		}
+		System.out.println(legalMoves);
 		return ImmutableList.copyOf(legalMoves);
 	}
 
