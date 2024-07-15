@@ -32,8 +32,8 @@ public final class Rook extends Piece {
 		for (final int candidateCoordinate : CANDIDATE_MOVE_VECTOR_COORDINATES) {
 			int pieceCoordinate = this.piecePosition;
 			while (BoardUtils.isValidTileCoordinate(pieceCoordinate)) {
-				if (!firstColumnException(pieceCoordinate, candidateCoordinate)
-						|| !eighthColumnException(pieceCoordinate, candidateCoordinate)) {
+				if (firstColumnException(pieceCoordinate, candidateCoordinate)
+						|| eighthColumnException(pieceCoordinate, candidateCoordinate)) {
 					break;
 				}
 				pieceCoordinate += candidateCoordinate;
